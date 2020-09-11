@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: envechoserver
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: envechoserver
+  serviceName: envechoserver
+  template:
+    metadata:
+      labels:
+        app: envechoserver
+    spec:
+      containers:
+        - name: envechoserver
+          image: jstastny/envechoserver
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: envechoserver
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: envechoserver
