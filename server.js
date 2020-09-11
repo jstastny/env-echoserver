@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-const port = 3000
-const host = '0.0.0.0'
+const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000
+const host = process.env.HOST ? process.env.HOST : '0.0.0.0'
 
 app.get('/*', (req, res) => {
     res.json({
@@ -14,5 +14,5 @@ app.get('/*', (req, res) => {
 })
 
 app.listen(port, host, () => {
-    console.log(`Echoserver app listening at http://localhost:${port}`)
+    console.log(`Echoserver app listening at http://${host}:${port}`)
 })

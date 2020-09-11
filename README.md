@@ -6,3 +6,6 @@ This was useful for some Kubernetes ingress / service debugging, where I used it
 ## Docker
 
 Docker image for this repo is available on DockerHub: https://hub.docker.com/r/jstastny/envechoserver
+
+## Configuration
+Optionally, `HOST` and `PORT` environment can be used to configure, which host and port the server should be listening at. The defaults are `0.0.0.0` for `HOST` and `3000` for `PORT`. 
